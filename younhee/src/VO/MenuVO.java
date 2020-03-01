@@ -4,7 +4,7 @@ public class MenuVO {
 
 	private String foodName; // 음식명
 	private int price; // 가격
-	private String datail; // 음식설명
+	private String detail; // 음식설명
 	private int storeNum; // 가게번호
 	private int foodNum; // 음식번호
 
@@ -24,12 +24,12 @@ public class MenuVO {
 		this.price = price;
 	}
 
-	public String getDatail() {
-		return datail;
+	public String getDetail() {
+		return detail;
 	}
 
-	public void setDatail(String datail) {
-		this.datail = datail;
+	public void setDetail(String datail) {
+		this.detail = datail;
 	}
 
 	public int getStoreNum() {
@@ -48,4 +48,10 @@ public class MenuVO {
 		this.foodNum = foodNum;
 	}
 
+	@Override
+	public String toString() {
+		return foodNum + " -" + foodName + "-\n가격 : " + price + "원\n" + detail + "\n";
+	}
+
+	
 }

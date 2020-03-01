@@ -39,6 +39,9 @@ public class Controller {
 			case 0: 
 				System.out.println("프로그램 종료");
 				break;
+			case 4 : // 유저 가입 정보 확인용 임시 테스트..
+				userService.showUserTest();
+				break;
 			default :
 				System.out.println("<유효하지 않은 번호 선택입니다.>\n");
 			}

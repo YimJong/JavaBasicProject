@@ -69,6 +69,13 @@ public class UserVO {
 		this.nickName = nickName;
 	}
 	
+	@Override
+	public String toString() {
+		return "UserVO [userName=" + userName + ", password=" + password + ", userid=" + userid + ", gender=" + gender
+				+ ", point=" + point + ", grade=" + grade + ", hp=" + hp + ", address=" + address + ", nickName="
+				+ nickName + "]";
+	}
+	
 	
 	
 	
