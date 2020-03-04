@@ -1,0 +1,82 @@
+package service;
+
+import java.util.Scanner;
+
+import VO.UserVO;
+import data.Database;
+import data.Session;
+
+public class EventService {
+	
+	String nowID = Session.CurrentLoginUser.getUserid();
+
+	
+	//id를 매개변수로 받아서 tb_user테이블에 있는 인덱스 번호 찾기
+	public int tb_Index(String id){
+		int indexno = 0;
+		
+		Database database = new Database();
+		
+		for(int i =0; i<database.tb_user.size();i++){
+			UserVO tb_id = database.tb_user.get(i);
+			if(tb_id.getUserid().equals(id)){
+				indexno = i;
+				break;
+			}
+		}
+		return indexno;
+	}
+	
+	public void game() {
+		Database database = Database.getInstance();
+		
+		int nowIndex = tb_Index(nowID);
+		
+		UserVO NowData = database.tb_user.get(nowIndex);
+		
+		
+		
+		int random = (int)(Math.random()*3)+1;
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("------------------------------");
+		System.out.println("[가위바위보 게임]");
+		System.out.println("1. 가위");
+		System.out.println("2. 바위");
+		System.out.println("3. 보");
+		System.out.print  ("입력 : ");
+		int input = Integer.parseInt(sc.nextLine());
+		
+		//input 승리
+		if(random == 1 && input == 2 || random == 2 && input ==3 || random == 3 && input == 1) {
+			System.out.println("승리하였습니다.");
+			System.out.println("100포인트가 적립되었습니다.");
+			
+			NowData.setPoint(+ 100);
+				}
+	   //random 승리
+		if(random == 2 && input == 1 || random == 3 && input == 2 || random == 1 && input == 3) {
+			System.out.println("다음 기회에...");
+			System.out.println("100포인트가 감소되었습니다.");
+			
+			if(NowData.getPoint() < 100){
+				NowData.setPoint(0);
+			}else {
+				NowData.setPoint(- 100);
+			}
+		}
+	}
+	
+	public void aa() {
+		Database database = Database.getInstance();
+		
+		int nowIndex = tb_Index(nowID);
+		
+		UserVO NowData = database.tb_user.get(nowIndex);
+	}
+	
+	
+	
+}
+
+
