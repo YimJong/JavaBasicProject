@@ -53,5 +53,4 @@ public class MenuVO {
 		return foodNum + " -" + foodName + "-\n가격 : " + price + "원\n" + detail + "\n";
 	}
 
-	
 }

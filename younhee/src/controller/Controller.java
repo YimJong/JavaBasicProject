@@ -2,6 +2,10 @@ package controller;
 
 import java.util.Scanner;
 
+import dao.CouponDao;
+import data.Database;
+import service.CouponService;
+import service.EventService;
 import service.UserService;
 
 public class Controller {
@@ -13,9 +17,13 @@ public class Controller {
 	
 	
 	UserService userService = UserService.getInstance();
+	EventService eventService = EventService.getInstance();
 	
 	private void start() {
-
+		CouponDao couponDao = new CouponDao(); // 시간에 따른 이벤트 코인 자동 충전 (Runnable run 메소드가 있는 클래스)
+		CouponService couponService = new CouponService(); 	
+		couponService.chargeEventChance(couponDao, 16, 23, 20); // 시간 발표 시간 상황에 따라 직접 입력할 것!
+													
 		Scanner s = new Scanner(System.in);
 
 		int menu;
@@ -70,11 +78,14 @@ public class Controller {
 			// 공지사항 관련 메소드
 			
 		case 9 : 
-			// 이벤트 메소드
-			
+			eventService.showCurrentEvent();
+			break;
 		case 0 : 
 			// 로그아웃
-			    
+			break;
+		case 11 :
+			System.out.println(Database.getInstance().tb_order);
+			userController();
 		}
 	}
 	

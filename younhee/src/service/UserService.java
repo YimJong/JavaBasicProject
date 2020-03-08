@@ -2,6 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import VO.MenuVO;
@@ -214,6 +215,7 @@ public class UserService {
 		ArrayList<StoreVO> store = userDao.checkResturantChoice(choice); // 입력받은 번호(음식종류)의 점포가 임시로 저장됨.
 		
 		for(int i = 0; i < store.size(); i++){
+			System.out.println("<" + (i + 1) + ">");
 			System.out.println(store.get(i).getStoreName());
 			System.out.println(store.get(i).getFoodType());
 			System.out.println(store.get(i).getMinimumOrder());
@@ -227,18 +229,23 @@ public class UserService {
 	}
 	
 	
-	public void showFoodMenu(int choice, ArrayList<StoreVO> store) {  // 점포 선택 시 그 점포의 음식 메뉴를 보여주는 메소드.
+	public void showFoodMenu(int choice, ArrayList<StoreVO> store) {  // 음식점 선택 시 그 음식점의 음식 메뉴를 보여주는 메소드.
 		Database database = Database.getInstance();
-		StoreVO selectedStore = store.get(choice - 1);
+		StoreVO selectedStore = store.get(choice - 1); // ArrayList도 인덱스는 0부터 시작하므로 -1 해줘야 함.
+		List<MenuVO> selectedMenu = new ArrayList<>();  // 선택된 음식점의 메뉴를 담기위한 리스트 생성
 		
 		System.out.println("========Menu========");
 		for(MenuVO menu : database.tb_menu) {
 			
-			if(selectedStore.getStoreNum() == menu.getStoreNum()) {
-				System.out.println(menu);
+			if(selectedStore.getStoreNum() == menu.getStoreNum()) { // 선택한 음식분야 음식점의 번호와 메뉴의 음식점 번호가 같은 메뉴만 출력
+				System.out.println(menu);							// 키 값(음식점 번호)이 같은 메뉴만 출력!
+				selectedMenu.add(menu);    // 선택된 음식점의 메뉴를 임시 리스트에 저장.
 			}
 		}
 		
+		Session.CurrentSelectedStore = store.get(choice - 1); // 현재 선택된 음식점의 객체를 임시 저장. - 장바구니에서 사용.
+		RotateController rtControl = new RotateController(); 
+		rtControl.choiceMenuController(selectedMenu, store, choice); // 장바구니, 주문하기 메뉴로 이동
 		
 	}
 

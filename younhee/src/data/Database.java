@@ -3,8 +3,10 @@ package data;
 import java.util.ArrayList;
 import java.util.List;
 
+import VO.BasketVO;
 import VO.FoodTypeVO;
 import VO.MenuVO;
+import VO.StoreOrderVO;
 import VO.StoreVO;
 import VO.UserVO;
 
@@ -25,6 +27,8 @@ public class Database {
 	public List<StoreVO> tb_store = new ArrayList<>(); // 점포 정보를 저장하기 위한 리스트
 	public List<FoodTypeVO> tb_foodType = new ArrayList<>(); // 음식종류 데이터
 	public List<MenuVO> tb_menu = new ArrayList<>(); // 메뉴 데이터
+	public List<BasketVO> tb_basket = new ArrayList<>(); // 장바구니 데이터
+	public List<StoreOrderVO> tb_order = new ArrayList<>(); // 매장별 주문 데이터
 	
 	
 	
@@ -68,23 +72,23 @@ public class Database {
 		MenuVO menu = new MenuVO();
 		MenuVO menu2 = new MenuVO();
 		
-		store.setStoreName("윤희네 손맛식당");
-		store.setHp("042-252-2525");
-		store.setAddress("대전 서구 만년동 xx번지");
-		store.setBusinessNumber("나도 잘 모름");
-		store.setClosed("매주 일요일");
-		store.setStoreNum(1);
-		store.setDeliveryTime("30 ~ 40분");
-		store.setKindOfStore(1);
-		store.setFoodType("한식");
-		store.setIntroduction("음식 좀 함");
-		store.setMinimumOrder(10000);
+		store.setStoreName("윤희네 손맛식당"); // 스캐너
+		store.setHp("042-252-2525"); // 스캐너
+		store.setAddress("대전 서구 만년동 xx번지");  // 스캐너 구 다섯가지/ 회원가입처럼
+		store.setBusinessNumber("나도 잘 모름"); // 스캐너
+		store.setClosed("매주 일요일"); // 스캐너
+		store.setStoreNum(1); // 스캐너 아님. StoreNum++
+		store.setDeliveryTime("30 ~ 40분"); // 스캐너
+		store.setKindOfStore(1); // 스캐너
+		store.setFoodType("한식"); // 스캐너?
+		store.setIntroduction("음식 좀 함"); // 스캐너
+		store.setMinimumOrder(10000); // 스캐너
 		
-		menu.setFoodName("육회비빔밥");
-		menu.setFoodNum(1);
-		menu.setPrice(8000);
-		menu.setStoreNum(1);
-		menu.setDetail("쉪 윤희가 직접 보고 고른 A+ 한우로 만든 육회가 들어간 비빔밥.");
+		menu.setFoodName("육회비빔밥"); // 스캐너
+		menu.setFoodNum(1); // ++
+		menu.setPrice(8000); // 스캐너
+		menu.setStoreNum(1); // 
+		menu.setDetail("쉪 윤희가 직접 보고 고른 A+ 한우로 만든 육회가 들어간 비빔밥."); // 스캐너
 		
 		menu2.setFoodName("돌솥비빔밥");
 		menu2.setFoodNum(2);
